@@ -15,6 +15,23 @@ namespace FireboyAndWatergirl
         public WinScreen()
         {
             InitializeComponent();
+
+            scoreOutput.Text = Convert.ToString(GameScreen.score);
+        }
+
+        private void titleButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new MenuScreen());
+        }
+
+        private void levelButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new LevelScreen());
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

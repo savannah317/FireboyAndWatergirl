@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace FireboyAndWatergirl
 {
@@ -17,18 +18,23 @@ namespace FireboyAndWatergirl
 
         bool wDown, aDown, dDown, upDown, leftDown, rightDown = false;
 
-        public static int x, y, width, height;
+        public static int x, y, gsWidth, gsHeight, width, height, ySpeed, timer, score;
         public static string id, type, fDirection, wDirection;
-        public static bool fJump, wJump, fAble, wAble = false;
+        public static bool fJump, wJump, fAble, wAble, fFall, wFall = false;
+
 
         List<Obstacle> obstacles = new List<Obstacle>();
         List<Wall> walls = new List<Wall>();
+        List<Wall> platforms = new List<Wall>();
 
-        Wall floor, left, right, roof;
-        Obstacle testWater, testLava;
+        Wall floor, left, right, roof, fCollided, wCollided;
+        Obstacle fbDoor, wgDoor;
+
 
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
+        SolidBrush greenBrush = new SolidBrush(Color.Green);
+        SolidBrush grayBrush = new SolidBrush(Color.Gray);
 
         public GameScreen()
         {
@@ -38,33 +44,34 @@ namespace FireboyAndWatergirl
 
         public void InitializeGame()
         {
-            width = this.Width;
-            height = this.Height;
+            gsWidth = this.Width;
+            gsHeight = this.Height;
+
+            timer = 0;
 
             //player 1 exists
-            fireboy = new Player("fb", 600, GameScreen.height - 80 - 20);
+            fireboy = new Player("fb", 600, GameScreen.gsHeight - 80 - 20, 50);
             fAble = true;
 
             //player 2 exists
-            watergirl = new Player("wg", 400, GameScreen.height - 80 - 20);
+            watergirl = new Player("wg", 400, GameScreen.gsHeight - 80 - 20, 50);
             wAble = true;
 
-            floor = new Wall(0, height - 20, width, 20);
-            walls.Add(floor);
-            left = new Wall(0, 0, 20, height);
+            //constant walls
+            floor = new Wall(0, gsHeight - 20, gsWidth, 20);
+            platforms.Add(floor);
+            left = new Wall(0, 0, 20, gsHeight);
             walls.Add(left);
-            right = new Wall(width - 20, 0, 20, height);
+            right = new Wall(gsWidth - 20, 0, 20, gsHeight);
             walls.Add(right);
-            roof = new Wall(0, 0, width, 20);
-            walls.Add(roof);
+            roof = new Wall(0, 0, gsWidth, 20);
+            platforms.Add(roof);
 
-            //make a list in the future
-            testWater = new Obstacle("water", 900, height - 22, 100, 20);
-            obstacles.Add(testWater);
-            testLava = new Obstacle("lava", 700, height - 22, 100, 20);
-            obstacles.Add(testLava);
+            //update the last collided platform to floor
+            fCollided = floor;
+            wCollided = floor;
 
-            //LevelReader(Form1.currentLevel);
+            LevelReader(Form1.currentLevel);
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -75,7 +82,7 @@ namespace FireboyAndWatergirl
                     upDown = false;
                     break;
                 case Keys.Right:
-                    rightDown = false; 
+                    rightDown = false;
                     break;
                 case Keys.Left:
                     leftDown = false;
@@ -133,7 +140,7 @@ namespace FireboyAndWatergirl
         {
             Random random = new Random();
 
-            string path = "Resources/Level" + levelNumber + ".xml";
+            string path = "Resources/level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
 
@@ -152,22 +159,50 @@ namespace FireboyAndWatergirl
                     reader.ReadToNextSibling("height");
                     height = Convert.ToInt32(reader.ReadString());
 
-                    reader.ReadToNextSibling("id");
-                    id = reader.ReadString();
-
                     reader.ReadToNextSibling("type");
                     type = reader.ReadString();
 
-                    if (type == "obstacle")
+                    if (type == "water")
                     {
                         //Create a new obstacle
-                        Obstacle newObstacle = new Obstacle(id, x, y, width, height);
+                        Obstacle newObstacle = new Obstacle(type, x, y, width, height);
+                        obstacles.Add(newObstacle);
+                    }
+                    if (type == "lava")
+                    {
+                        //Create a new obstacle
+                        Obstacle newObstacle = new Obstacle(type, x, y, width, height);
+                        obstacles.Add(newObstacle);
+                    }
+                    if (type == "goo")
+                    {
+                        //Create a new obstacle
+                        Obstacle newObstacle = new Obstacle(type, x, y, width, height);
                         obstacles.Add(newObstacle);
                     }
                     if (type == "wall")
                     {
+                        //create a new wall
                         Wall newWall = new Wall(x, y, width, height);
                         walls.Add(newWall);
+                    }
+                    if (type == "platform")
+                    {
+                        //create a new platforms
+                        Wall newWall = new Wall(x, y, width, height);
+                        platforms.Add(newWall);
+                    }
+                    if (type == "wg")
+                    {
+                        //create a door
+                        Obstacle wDoor = new Obstacle(type, x, y, width, height);
+                        wgDoor = wDoor;
+                    }
+                    if (type == "fb")
+                    {
+                        //create a door
+                        Obstacle fDoor = new Obstacle(type, x, y, width, height);
+                        fbDoor = fDoor;
                     }
                 }
             }
@@ -183,20 +218,24 @@ namespace FireboyAndWatergirl
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            timer++;
+            timerLabel.Text = Convert.ToString(timer / 30);
+
+            #region Movements
             //watergirl movements
             if (leftDown == true && watergirl.x > 20)
             {
                 wDirection = "l";
                 watergirl.Move("left");
             }
-            if (rightDown == true && watergirl.x < width - 20)
+            if (rightDown == true && watergirl.x < gsWidth - 20)
             {
                 wDirection = "r";
                 watergirl.Move("right");
             }
             if (upDown == true)
             {
-                Player.ySpeed = 30;
+                watergirl.ySpeed = 50;
                 wAble = false;
                 upDown = false;
             }
@@ -205,6 +244,10 @@ namespace FireboyAndWatergirl
                 wDirection = "up";
                 watergirl.Move("up");
             }
+            if (watergirl.y <= 0)
+            {
+                watergirl.Move("down");
+            }
 
             //fireboy movements
             if (aDown == true && fireboy.x > 20)
@@ -212,14 +255,14 @@ namespace FireboyAndWatergirl
                 fDirection = "l";
                 fireboy.Move("left");
             }
-            if (dDown == true && fireboy.x < width - 20)
+            if (dDown == true && fireboy.x < gsWidth - 20)
             {
                 fDirection = "r";
                 fireboy.Move("right");
             }
             if (wDown == true)
             {
-                Player.ySpeed = 30;
+                fireboy.ySpeed = 50;
                 fAble = false;
                 wDown = false;
             }
@@ -228,81 +271,164 @@ namespace FireboyAndWatergirl
                 fDirection = "up";
                 fireboy.Move("up");
             }
-
-            foreach (Wall w in walls)
+            if (fireboy.y <= 0)
             {
-                //fireboy wall collisions
-                if (fireboy.WallCollision(w, "fb"))
+                fireboy.Move("down");
+            }
+            #endregion
+
+            #region Collisions
+
+            //fireboy platform collisions
+            foreach (Wall p in platforms)
+            {
+                if (fireboy.WallCollision(p))
                 {
+                    fCollided = p;
                     if (fDirection == "up")
                     {
-                        if (fireboy.y > w.y && fireboy.x > w.x)
+                        if (fireboy.y > p.y)
                         {
-                            fireboy.y = w.y + fireboy.playerHeight;
-                            fireboy.Move("down");
+                            fireboy.y = p.y + fireboy.playerHeight;
                         }
-                        if (fireboy.x < w.x)
-                        {
-                            fDirection = "r";
-                        }
-                        if (fireboy.y < w.y)
+                        if (fireboy.y < p.y)
                         {
                             fAble = true;
                             fJump = false;
-                            fireboy.Move("no");
-                            fireboy.y = w.y - fireboy.playerHeight;
+                            fireboy.y = p.y - fireboy.playerHeight;
                         }
                     }
-                    if (fDirection == "l")
+                    if (fFall)
                     {
-                        fireboy.x = w.x + 21;
+                        if (fireboy.y < fCollided.y)
+                        {
+                            fAble = true;
+                            fJump = false;
+                            fireboy.y = p.y - fireboy.playerHeight;
+                        }
                     }
-                    if (fDirection == "r")
+                }
+                if (fDirection == "r")
+                {
+                    if (fJump == false)
+                    {
+                        if (fireboy.x > fCollided.x + fCollided.xSize)
+                        {
+                            if (fireboy.WallCollision(p) == false)
+                            {
+                                fireboy.ySpeed = 5;
+                                fFall = true;
+                                fireboy.Move("down");
+                            }
+
+                        }
+                    }
+                }
+                if (fDirection == "l")
+                {
+                    if (fJump == false)
+                    {
+                        if (fireboy.x < fCollided.x)
+                        {
+                            if (fireboy.WallCollision(p) == false)
+                            {
+                                fireboy.ySpeed = 5;
+                                fFall = true;
+                                fireboy.Move("down");
+                            }
+                        }
+                    }
+                }
+
+                if (watergirl.WallCollision(p))
+                {
+                    wCollided = p;
+                    if (wDirection == "up")
+                    {
+                        if (watergirl.y > p.y)
+                        {
+                            watergirl.y = p.y + watergirl.playerHeight;
+                        }
+                        if (watergirl.y < p.y)
+                        {
+                            wAble = true;
+                            wJump = false;
+                            watergirl.y = p.y - watergirl.playerHeight;
+                        }
+                    }
+                    if (wFall)
+                    {
+                        if (watergirl.y < wCollided.y)
+                        {
+                            wAble = true;
+                            wJump = false;
+                            watergirl.y = p.y - watergirl.playerHeight;
+                        }
+                    }
+                }
+                if (wDirection == "r")
+                {
+                    if (wJump == false)
+                    {
+                        if (watergirl.x > wCollided.x + wCollided.xSize)
+                        {
+                            if (watergirl.WallCollision(p) == false)
+                            {
+                                watergirl.ySpeed = 5;
+                                wFall = true;
+                                watergirl.Move("down");
+                            }
+
+                        }
+                    }
+                }
+                if (wDirection == "l")
+                {
+                    if (wJump == false)
+                    {
+                        if (watergirl.x < wCollided.x)
+                        {
+                            if (watergirl.WallCollision(p) == false)
+                            {
+                                watergirl.ySpeed = 5;
+                                wFall = true;
+                                watergirl.Move("down");
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (Wall w in walls)
+            {
+                //fireboy wall collisions
+                if (fireboy.WallCollision(w))
+                {
+                    if (fireboy.x > w.x)
+                    {
+                        fireboy.x = w.x + 20;
+                    }
+                    if (fireboy.x < w.x)
                     {
                         fireboy.x = w.x - fireboy.playerWidth;
                     }
                 }
-
                 //watergirl wall collisions
-                if (watergirl.WallCollision(w, "wg"))
+                if (watergirl.WallCollision(w))
                 {
-                    if (wDirection == "up")
+                    if (watergirl.x > w.x)
                     {
-                        if (watergirl.y > w.y && watergirl.x > w.x)
-                        {
-                            watergirl.y = w.y + watergirl.playerHeight;
-                            watergirl.Move("down");
-                        }
-                        if (watergirl.x < w.x)
-                        {
-                            wDirection = "r";
-                        }
-                        if (watergirl.y < w.y)
-                        {
-                            wAble = true;
-                            wJump = false;
-                            watergirl.Move("no");
-                            watergirl.y = w.y - watergirl.playerHeight;
-                        }
+                        watergirl.x = w.x + 20;
                     }
-                    if (wDirection == "l")
-                    {
-                        watergirl.x = w.x + 21;
-                    }
-                    if (wDirection == "r")
+                    if (watergirl.x < w.x)
                     {
                         watergirl.x = w.x - watergirl.playerWidth;
                     }
                 }
             }
 
-
-            //watergirl obstacle collisions
-
-            //fireboy obstacle collisions
             foreach (Obstacle o in obstacles)
             {
-                if (fireboy.Collision(o, "fb"))
+                if (fireboy.Collision(o))
                 {
                     if (o.obstacleType == "water")
                     {
@@ -312,17 +438,9 @@ namespace FireboyAndWatergirl
                     {
                         Death();
                     }
-                    if (o.obstacleType == "lava")
-                    {
-
-                    }
                 }
-                if (watergirl.Collision(o, "wg"))
+                if (watergirl.Collision(o))
                 {
-                    if (o.obstacleType == "water")
-                    {
-
-                    }
                     if (o.obstacleType == "goo")
                     {
                         Death();
@@ -333,6 +451,16 @@ namespace FireboyAndWatergirl
                     }
                 }
             }
+
+
+            if (fireboy.DoorCollision(fbDoor) && watergirl.DoorCollision(wgDoor))
+            {
+                gameTimer.Stop();
+                score = timer;
+                Form1.ChangeScreen(this, new WinScreen());
+            }
+
+            #endregion
 
             Refresh();
         }
@@ -346,8 +474,15 @@ namespace FireboyAndWatergirl
             //draw base walls
             foreach (Wall w in walls)
             {
-                e.Graphics.FillRectangle(redBrush, w.x, w.y, w.xSize, w.ySize);
+                e.Graphics.FillRectangle(grayBrush, w.x, w.y, w.xSize, w.ySize);
             }
+            foreach (Wall p in platforms)
+            {
+                e.Graphics.FillRectangle(grayBrush, p.x, p.y, p.xSize, p.ySize);
+            }
+
+            e.Graphics.FillRectangle(blueBrush, wgDoor.x, wgDoor.y, wgDoor.xSize, wgDoor.ySize);
+            e.Graphics.FillRectangle(redBrush, fbDoor.x, fbDoor.y, fbDoor.xSize, fbDoor.ySize);
 
             foreach (Obstacle o in obstacles)
             {
@@ -361,12 +496,9 @@ namespace FireboyAndWatergirl
                 }
                 if (o.obstacleType == "goo")
                 {
-
+                    e.Graphics.FillRectangle(greenBrush, o.x, o.y, o.xSize, o.ySize);
                 }
             }
-
-            //draw obstacles (make list soon)
-            e.Graphics.FillRectangle(blueBrush, testWater.x, testWater.y, testWater.xSize, testWater.ySize);
         }
     }
 }
