@@ -66,7 +66,7 @@
             this.level2Button.Name = "level2Button";
             this.level2Button.Size = new System.Drawing.Size(666, 148);
             this.level2Button.TabIndex = 6;
-            this.level2Button.Text = "2";
+            this.level2Button.Text = "2 (Locked)";
             this.level2Button.UseVisualStyleBackColor = true;
             this.level2Button.Click += new System.EventHandler(this.level2Button_Click);
             // 
@@ -79,7 +79,7 @@
             this.level3Button.Name = "level3Button";
             this.level3Button.Size = new System.Drawing.Size(679, 148);
             this.level3Button.TabIndex = 7;
-            this.level3Button.Text = "3";
+            this.level3Button.Text = "3 (Locked)";
             this.level3Button.UseVisualStyleBackColor = true;
             this.level3Button.Click += new System.EventHandler(this.level3Button_Click);
             // 
@@ -87,7 +87,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FireboyAndWatergirl.Properties.Resources.bkgdFbWg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.level3Button);
             this.Controls.Add(this.level2Button);

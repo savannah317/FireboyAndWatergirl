@@ -75,28 +75,30 @@
             // 
             // winLabel
             // 
-            this.winLabel.AutoSize = true;
-            this.winLabel.Location = new System.Drawing.Point(668, 46);
+            this.winLabel.Font = new System.Drawing.Font("Chiller", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winLabel.Location = new System.Drawing.Point(550, 32);
             this.winLabel.Name = "winLabel";
-            this.winLabel.Size = new System.Drawing.Size(51, 13);
+            this.winLabel.Size = new System.Drawing.Size(322, 102);
             this.winLabel.TabIndex = 4;
             this.winLabel.Text = "You Win!";
             // 
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
-            this.scoreLabel.Location = new System.Drawing.Point(594, 124);
+            this.scoreLabel.Font = new System.Drawing.Font("Papyrus", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Location = new System.Drawing.Point(526, 189);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(86, 13);
+            this.scoreLabel.Size = new System.Drawing.Size(221, 46);
             this.scoreLabel.TabIndex = 5;
             this.scoreLabel.Text = "Your score was: ";
             // 
             // scoreOutput
             // 
             this.scoreOutput.AutoSize = true;
-            this.scoreOutput.Location = new System.Drawing.Point(686, 124);
+            this.scoreOutput.Font = new System.Drawing.Font("Papyrus", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreOutput.Location = new System.Drawing.Point(739, 189);
             this.scoreOutput.Name = "scoreOutput";
-            this.scoreOutput.Size = new System.Drawing.Size(21, 13);
+            this.scoreOutput.Size = new System.Drawing.Size(54, 46);
             this.scoreOutput.TabIndex = 6;
             this.scoreOutput.Text = "##";
             // 
@@ -116,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.scoreOutput);
             this.Controls.Add(this.scoreLabel);

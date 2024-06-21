@@ -16,7 +16,8 @@ namespace FireboyAndWatergirl
         {
             InitializeComponent();
 
-            scoreOutput.Text = Convert.ToString(GameScreen.score);
+            BackgroundImage = Properties.Resources.bkgdFbWg;
+            scoreOutput.Text = Convert.ToString(GameScreen.score) + "seconds";
             if (Form1.currentLevel == 3)
             {
                 nextButton.Enabled = false;

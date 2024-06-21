@@ -15,6 +15,7 @@ namespace FireboyAndWatergirl
         public DeathScreen()
         {
             InitializeComponent();
+            BackgroundImage = Properties.Resources.bkgdFbWg;
         }
 
         private void backButton_Click(object sender, EventArgs e)

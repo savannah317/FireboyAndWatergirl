@@ -15,6 +15,7 @@ namespace FireboyAndWatergirl
         public MenuScreen()
         {
             InitializeComponent();
+            BackgroundImage = Properties.Resources.bkgdFbWg;
         }
 
         private void startButton_Click(object sender, EventArgs e)

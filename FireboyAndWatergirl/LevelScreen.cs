@@ -15,14 +15,18 @@ namespace FireboyAndWatergirl
         public LevelScreen()
         {
             InitializeComponent();
+            BackgroundImage = Properties.Resources.bkgdFbWg;
             if (Form1.completeLevel >= 2)
             {
                 level2Button.Enabled = true;
+                level2Button.Text = "2";
             }
             if (Form1.completeLevel >= 3)
             {
                 level2Button.Enabled = true;
                 level3Button.Enabled = true;
+                level3Button.Text = "3";
+                level2Button.Text = "2";
             }
         }
 

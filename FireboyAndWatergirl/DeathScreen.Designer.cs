@@ -38,12 +38,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Chiller", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(332, 232);
+            this.label1.Location = new System.Drawing.Point(543, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(319, 111);
             this.label1.TabIndex = 0;
-            this.label1.Text = "You died";
+            this.label1.Text = "You Died!";
             // 
             // exitButton
             // 
@@ -83,6 +84,7 @@
             // 
             // replayButton
             // 
+            this.replayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.replayButton.Font = new System.Drawing.Font("Papyrus", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.replayButton.ForeColor = System.Drawing.Color.Black;
             this.replayButton.Location = new System.Drawing.Point(600, 200);
@@ -97,6 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.replayButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.levelButton);

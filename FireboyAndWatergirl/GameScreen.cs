@@ -91,15 +91,19 @@ namespace FireboyAndWatergirl
                     break;
                 case Keys.Right:
                     rightDown = false;
+                    wXDirection = "n";
                     break;
                 case Keys.Left:
                     leftDown = false;
+                    wXDirection = "n";
                     break;
                 case Keys.A:
                     aDown = false;
+                    fXDirection = "n";
                     break;
                 case Keys.D:
                     dDown = false;
+                    fXDirection = "n";
                     break;
                 case Keys.W:
                     wDown = false;
@@ -247,7 +251,8 @@ namespace FireboyAndWatergirl
         {
             //increase the time every second and display
             timer++;
-            timerLabel.Text = Convert.ToString(timer / 30);
+            score = timer / 30;
+            timerLabel.Text = Convert.ToString(score);
 
             #region Movements
             //watergirl movements
@@ -351,7 +356,6 @@ namespace FireboyAndWatergirl
                 }
                 if (fDirection == "r")
                 {
-                    fXDirection = "r";
                     if (fJump == false)
                     {
                         if (fireboy.x > fCollided.x + fCollided.xSize)
@@ -368,7 +372,6 @@ namespace FireboyAndWatergirl
                 }
                 if (fDirection == "l")
                 {
-                    fXDirection = "l";
                     if (fJump == false)
                     {
                         if (fireboy.x < fCollided.x)
@@ -415,7 +418,6 @@ namespace FireboyAndWatergirl
                 }
                 if (wDirection == "r")
                 {
-                    wXDirection = "r";
                     if (wJump == false)
                     {
                         if (watergirl.x > wCollided.x + wCollided.xSize)
@@ -432,7 +434,6 @@ namespace FireboyAndWatergirl
                 }
                 if (wDirection == "l")
                 {
-                    wXDirection = "l";
                     if (wJump == false)
                     {
                         if (watergirl.x < wCollided.x)
@@ -523,7 +524,7 @@ namespace FireboyAndWatergirl
             if (fireboy.DoorCollision(fbDoor) && watergirl.DoorCollision(wgDoor))
             {
                 gameTimer.Stop();
-                score = timer;
+                score = timer/30;
                 Form1.ChangeScreen(this, new WinScreen());
             }
 
