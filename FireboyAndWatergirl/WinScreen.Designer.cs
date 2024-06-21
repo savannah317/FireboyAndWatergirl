@@ -34,6 +34,7 @@
             this.winLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.scoreOutput = new System.Windows.Forms.Label();
+            this.nextButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleButton
@@ -75,7 +76,7 @@
             // winLabel
             // 
             this.winLabel.AutoSize = true;
-            this.winLabel.Location = new System.Drawing.Point(666, 256);
+            this.winLabel.Location = new System.Drawing.Point(668, 46);
             this.winLabel.Name = "winLabel";
             this.winLabel.Size = new System.Drawing.Size(51, 13);
             this.winLabel.TabIndex = 4;
@@ -84,7 +85,7 @@
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
-            this.scoreLabel.Location = new System.Drawing.Point(592, 334);
+            this.scoreLabel.Location = new System.Drawing.Point(594, 124);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(86, 13);
             this.scoreLabel.TabIndex = 5;
@@ -93,16 +94,29 @@
             // scoreOutput
             // 
             this.scoreOutput.AutoSize = true;
-            this.scoreOutput.Location = new System.Drawing.Point(684, 334);
+            this.scoreOutput.Location = new System.Drawing.Point(686, 124);
             this.scoreOutput.Name = "scoreOutput";
             this.scoreOutput.Size = new System.Drawing.Size(21, 13);
             this.scoreOutput.TabIndex = 6;
             this.scoreOutput.Text = "##";
             // 
+            // nextButton
+            // 
+            this.nextButton.Font = new System.Drawing.Font("Papyrus", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextButton.ForeColor = System.Drawing.Color.Black;
+            this.nextButton.Location = new System.Drawing.Point(546, 294);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(326, 113);
+            this.nextButton.TabIndex = 7;
+            this.nextButton.Text = "Next Level";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            // 
             // WinScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.nextButton);
             this.Controls.Add(this.scoreOutput);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.winLabel);
@@ -124,5 +138,6 @@
         private System.Windows.Forms.Label winLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label scoreOutput;
+        private System.Windows.Forms.Button nextButton;
     }
 }

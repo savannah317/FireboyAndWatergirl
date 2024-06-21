@@ -129,9 +129,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\forestBkgd.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\level1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -140,7 +137,33 @@
     <None Include="Resources\bkgdFbWg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\platform %281%29.jpg" />
+    <None Include="Resources\caveTexture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\FireboyAndWatergirl.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stones.jpg" />
+    <None Include="Resources\wgLeft.png" />
+    <None Include="Resources\wgRight.png" />
+    <None Include="Resources\water %281%29.jpg" />
+    <None Include="Resources\watergirl %281%29.png" />
+    <None Include="Resources\caveTextureVert.jpg" />
+    <None Include="Resources\fireboy %281%29.png" />
+    <None Include="Resources\lava %282%29.jpg" />
+    <None Include="Resources\greenGoo %281%29.jpg" />
+    <None Include="Resources\doors %281%29.jpg" />
+    <None Include="Resources\doors2 %281%29.jpg" />
+    <None Include="Resources\fbRight.png" />
+    <None Include="Resources\fbLeft.png" />
+    <Content Include="Resources\level3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

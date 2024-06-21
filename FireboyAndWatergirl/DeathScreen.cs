@@ -16,5 +16,25 @@ namespace FireboyAndWatergirl
         {
             InitializeComponent();
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new MenuScreen());
+        }
+
+        private void levelButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new LevelScreen());
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void replayButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new GameScreen());
+        }
     }
 }

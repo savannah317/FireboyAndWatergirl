@@ -13,18 +13,17 @@ namespace FireboyAndWatergirl
     {
         string playerType;
         public int x, y;
-        public int playerWidth = 30;
+        public int playerWidth = 5;
         public int playerHeight = 80;
         public int ySpeed;
-        public int xSpeed = 14;
+        public int xSpeed = 20;
         public int counter = 0;
 
-        public Player(string playerType, int x, int y, int ySpeed)
+        public Player(string playerType, int x, int y)
         { 
             this.playerType = playerType;
             this.x = x;
             this.y = y;
-            this.ySpeed = ySpeed;
         }
         
         public void Move(string direction)

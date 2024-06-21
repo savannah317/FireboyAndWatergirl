@@ -17,6 +17,17 @@ namespace FireboyAndWatergirl
             InitializeComponent();
 
             scoreOutput.Text = Convert.ToString(GameScreen.score);
+            if (Form1.currentLevel == 3)
+            {
+                nextButton.Enabled = false;
+                nextButton.Visible = false;
+            }
+            else
+            {
+                Form1.currentLevel++;
+                Form1.completeLevel++;
+            }
+            
         }
 
         private void titleButton_Click(object sender, EventArgs e)
@@ -32,6 +43,11 @@ namespace FireboyAndWatergirl
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+                Form1.ChangeScreen(this, new GameScreen());
         }
     }
 }

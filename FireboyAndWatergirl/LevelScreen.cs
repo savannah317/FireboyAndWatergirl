@@ -15,6 +15,15 @@ namespace FireboyAndWatergirl
         public LevelScreen()
         {
             InitializeComponent();
+            if (Form1.completeLevel >= 2)
+            {
+                level2Button.Enabled = true;
+            }
+            if (Form1.completeLevel >= 3)
+            {
+                level2Button.Enabled = true;
+                level3Button.Enabled = true;
+            }
         }
 
         private void level1Button_Click(object sender, EventArgs e)

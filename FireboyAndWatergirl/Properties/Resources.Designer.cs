@@ -71,32 +71,116 @@ namespace FireboyAndWatergirl.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap caveTexture {
+            get {
+                object obj = ResourceManager.GetObject("caveTexture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap caveTextureVert {
+            get {
+                object obj = ResourceManager.GetObject("caveTextureVert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fbLeft {
+            get {
+                object obj = ResourceManager.GetObject("fbLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fbRight {
+            get {
+                object obj = ResourceManager.GetObject("fbRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fireboy {
+            get {
+                object obj = ResourceManager.GetObject("fireboy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fireDoor {
+            get {
+                object obj = ResourceManager.GetObject("fireDoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenGoo {
+            get {
+                object obj = ResourceManager.GetObject("greenGoo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lava {
+            get {
+                object obj = ResourceManager.GetObject("lava", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
         ///&lt;level&gt;
-        ///   &lt;platform&gt;
-        ///      &lt;x&gt;20&lt;/x&gt;
-        ///      &lt;y&gt;700&lt;/y&gt;
-        ///      &lt;width&gt;900&lt;/width&gt;
-        ///      &lt;height&gt;25&lt;/height&gt;
-        ///      &lt;type&gt;platform&lt;/type&gt;
-        ///   &lt;/platform&gt;
-        ///   &lt;platform&gt;
-        ///      &lt;x&gt;500&lt;/x&gt;
-        ///      &lt;y&gt;520&lt;/y&gt;
-        ///      &lt;width&gt;900&lt;/width&gt;
-        ///      &lt;height&gt;25&lt;/height&gt;
-        ///      &lt;type&gt;platform&lt;/type&gt;
-        ///   &lt;/platform&gt;
-        ///   &lt;platform&gt;
-        ///      &lt;x&gt;300&lt;/x&gt;
-        ///      &lt;y&gt;340&lt;/y&gt;
-        ///      &lt;width&gt;900&lt;/width&gt;
-        ///      &lt;height&gt;25&lt;/height&gt;
-        ///      &lt;type&gt;platform&lt;/type&gt;
-        ///   &lt;/platform&gt;
-        ///   &lt;platform&gt;
-        ///      &lt;x&gt;20&lt;/x&gt;
-        ///      &lt;y&gt;1 [rest of string was truncated]&quot;;.
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;20&lt;/x&gt;
+        ///		&lt;y&gt;700&lt;/y&gt;
+        ///		&lt;width&gt;900&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;500&lt;/x&gt;
+        ///		&lt;y&gt;520&lt;/y&gt;
+        ///		&lt;width&gt;900&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;300&lt;/x&gt;
+        ///		&lt;y&gt;340&lt;/y&gt;
+        ///		&lt;width&gt;900&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;20&lt;/x&gt;
+        ///		&lt;y&gt;160&lt;/y&gt;
+        ///		&lt;width&gt;400&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platf [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string level1_xml {
             get {
@@ -105,11 +189,98 @@ namespace FireboyAndWatergirl.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;level&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;250&lt;/x&gt;
+        ///		&lt;y&gt;700&lt;/y&gt;
+        ///		&lt;width&gt;900&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;0&lt;/x&gt;
+        ///		&lt;y&gt;520&lt;/y&gt;
+        ///		&lt;width&gt;300&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;250&lt;/x&gt;
+        ///		&lt;y&gt;340&lt;/y&gt;
+        ///		&lt;width&gt;1150&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		&lt;type&gt;platform&lt;/type&gt;
+        ///	&lt;/platform&gt;
+        ///	&lt;platform&gt;
+        ///		&lt;x&gt;250&lt;/x&gt;
+        ///		&lt;y&gt;160&lt;/y&gt;
+        ///		&lt;width&gt;900&lt;/width&gt;
+        ///		&lt;height&gt;25&lt;/height&gt;
+        ///		 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string level2 {
+            get {
+                return ResourceManager.GetString("level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap platformImg {
+        internal static System.Drawing.Bitmap stones {
             get {
-                object obj = ResourceManager.GetObject("platformImg", resourceCulture);
+                object obj = ResourceManager.GetObject("stones", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap water {
+            get {
+                object obj = ResourceManager.GetObject("water", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap waterDoor {
+            get {
+                object obj = ResourceManager.GetObject("waterDoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap watergirl {
+            get {
+                object obj = ResourceManager.GetObject("watergirl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wgLeft {
+            get {
+                object obj = ResourceManager.GetObject("wgLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wgRight {
+            get {
+                object obj = ResourceManager.GetObject("wgRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
